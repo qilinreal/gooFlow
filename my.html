@@ -58,17 +58,18 @@
                 node_5: {name: "node_5", left: 380, top: 71, type: "fork", width: 86, height: 24}
             },
             lines: {
-                line_3: {type: "sl", from: "node_1", to: "node_2", name: "", marked: false},
+                line_3: {type: "tb", M: "69", from: "node_1", to: "node_2", name: "", marked: false},
                 line_6: {type: "sl", from: "node_2", to: "node_5", name: "", marked: false}
-            },
-            areas: {
-                area_8: {name: "area_8", left: 35, top: 39, color: "red", width: 472, height: 114}
             }
+//            ,
+//            areas: {
+//                area_8: {name: "area_8", left: 35, top: 39, color: "red", width: 472, height: 114}
+//            }
         };
+        o1 = {type: "sl", from: "node_5", to: "1189", name: "", marked: false};
+        o2 = {name:'node_like', left:'66', top:'300', type:'task', width:'86', height:'24'};
         instance.$max = 9;
         instance.loadData(jsondata);
-
-        console.log(instance.$bgDiv);
     });
 </script>
 

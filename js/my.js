@@ -80,14 +80,20 @@ function GooFlow(bgDiv, property) {
     }
     var toolWidth = 0;
     if (property.haveTool) {
-        this.$bgDiv.append("<div class='GooFlow_tool'" + (property.haveHead ? "" : " style='margin-top:3px'") + "><div style='height:" + (height - headHeight - (property.haveHead ? 7 : 10)) + "px' class='GooFlow_tool_div'></div></div>");
+        this.$bgDiv.append("<div class='GooFlow_tool'" + (property.haveHead ? "" : " style='margin-top:3px'")
+            + "><div style='height:" + (height - headHeight - (property.haveHead ? 7 : 10))
+            + "px' class='GooFlow_tool_div'></div></div>");
         this.$tool = this.$bgDiv.find(".GooFlow_tool div");
         //未加代码：加入绘图工具按钮
-        this.$tool.append("<a href='javascript:void(0)' type='cursor' class='GooFlow_tool_btndown' id='" + this.$id + "_btn_cursor'><b class='ico_cursor'/></a><a href='javascript:void(0)' type='direct' class='GooFlow_tool_btn' id='" + this.$id + "_btn_direct'><b class='ico_direct'/></a>");
+        this.$tool.append("<a href='javascript:void(0)' type='cursor' class='GooFlow_tool_btndown' id='"
+            + this.$id + "_btn_cursor'><b class='ico_cursor'/></a><a href='javascript:void(0)' type='direct' class='GooFlow_tool_btn' id='"
+            + this.$id + "_btn_direct'><b class='ico_direct'/></a>");
         if (property.toolBtns && property.toolBtns.length > 0) {
             tmp = "<span/>";
             for (var i = 0; i < property.toolBtns.length; ++i) {
-                tmp += "<a href='javascript:void(0)' type='" + property.toolBtns[i] + "' id='" + this.$id + "_btn_" + property.toolBtns[i].split(" ")[0] + "' class='GooFlow_tool_btn'><b class='ico_" + property.toolBtns[i] + "'/></a>";//加入自定义按钮
+                tmp += "<a href='javascript:void(0)' type='" + property.toolBtns[i] + "' id='"
+                    + this.$id + "_btn_" + property.toolBtns[i].split(" ")[0] + "' class='GooFlow_tool_btn'><b class='ico_"
+                    + property.toolBtns[i] + "'/></a>";//加入自定义按钮
             }
             this.$tool.append(tmp);
         }
@@ -121,7 +127,7 @@ function GooFlow(bgDiv, property) {
     width = width - toolWidth - 8;
     height = height - headHeight - (property.haveHead ? 5 : 8);
     this.$bgDiv.append("<div class='GooFlow_work' style='width:" + (width) + "px;height:" + (height) + "px;" + (property.haveHead ? "" : "margin-top:3px") + "'></div>");
-    this.$workArea = $("<div class='GooFlow_work_inner' style='width:" + width * 3 + "px;height:" + height * 3 + "px'></div>")
+    this.$workArea = $("<div class='GooFlow_work_inner' style='width:" + width * 1 + "px;height:" + height * 1 + "px'></div>")
         .attr({"unselectable": "on", "onselectstart": 'return false', "onselect": 'document.selection.empty()'});
     this.$bgDiv.children(".GooFlow_work").append(this.$workArea);
     this.$draw = null;//画矢量线条的容器
@@ -155,10 +161,10 @@ function GooFlow(bgDiv, property) {
         });
         //划线或改线时用的绑定
         this.$workArea.mousemove({inthis: this}, function (e) {
-            if (e.data.inthis.$nowType != "direct" && !e.data.inthis.$mpTo.data("p"))    return;
+            if (e.data.inthis.$nowType != "direct" && !e.data.inthis.$mpTo.data("p")) return;
             var lineStart = $(this).data("lineStart");
             var lineEnd = $(this).data("lineEnd");
-            if (!lineStart && !lineEnd)return;
+            if (!lineStart && !lineEnd) return;
 
             var ev = mousePosition(e), t = getElCoordinate(this);
             var X, Y;
@@ -167,8 +173,16 @@ function GooFlow(bgDiv, property) {
             var line = document.getElementById("GooFlow_tmp_line");
             if (lineStart) {
                 if (GooFlow.prototype.useSVG != "") {
-                    line.childNodes[0].setAttribute("d", "M " + lineStart.x + " " + lineStart.y + " L " + X + " " + Y);
-                    line.childNodes[1].setAttribute("d", "M " + lineStart.x + " " + lineStart.y + " L " + X + " " + Y);
+                    // (lineStart.y + This.$nodeData[lineStart.id].height / 2 + e.pageY) / 2
+                    var ql_declare_M = (lineStart.y + e.data.inthis.$nodeData[lineStart.id].height / 2 + Y) / 2;
+                    line.childNodes[0].setAttribute("d", "M " + lineStart.x + " " + lineStart.y
+                        + " L " + lineStart.x + " " + ql_declare_M
+                        + " L " + X + " " + ql_declare_M
+                        + " L " + X + " " + Y);
+                    line.childNodes[1].setAttribute("d", "M " + lineStart.x + " " + lineStart.y
+                        + " L " + lineStart.x + " " + ql_declare_M
+                        + " L " + X + " " + ql_declare_M
+                        + " L " + X + " " + Y);
                     if (line.childNodes[1].getAttribute("marker-end") == "url(\"#arrow2\")")
                         line.childNodes[1].setAttribute("marker-end", "url(#arrow3)");
                     else    line.childNodes[1].setAttribute("marker-end", "url(#arrow2)");
@@ -467,13 +481,13 @@ GooFlow.prototype = {
         }
         else {
             this.$draw = document.createElement("v:group");
-            this.$draw.coordsize = width * 3 + "," + height * 3;
-            this.$workArea.prepend("<div class='GooFlow_work_vml' style='position:relative;width:" + width * 3 + "px;height:" + height * 3 + "px'></div>");
+            this.$draw.coordsize = width * 1 + "," + height * 1;
+            this.$workArea.prepend("<div class='GooFlow_work_vml' style='position:relative;width:" + width * 1 + "px;height:" + height * 1 + "px'></div>");
             this.$workArea.children("div")[0].insertBefore(this.$draw, null);
         }
         this.$draw.id = id;
-        this.$draw.style.width = width * 3 + "px";
-        this.$draw.style.height = +height * 3 + "px";
+        this.$draw.style.width = width * 1 + "px";
+        this.$draw.style.height = +height * 1 + "px";
         //绑定连线的点击选中以及双击编辑事件
         var tmpClk = null;
         if (GooFlow.prototype.useSVG != "")  tmpClk = "g";
@@ -520,7 +534,7 @@ GooFlow.prototype = {
         });
     },
     initGroup: function (width, height) {
-        this.$group = $("<div class='GooFlow_work_group' style='width:" + width * 3 + "px;height:" + height * 3 + "px'></div>");//存放背景区域的容器
+        this.$group = $("<div class='GooFlow_work_group' style='width:" + width * 1 + "px;height:" + height * 1 + "px'></div>");//存放背景区域的容器
         this.$workArea.prepend(this.$group);
         if (!this.$editable)    return;
         //区域划分框操作区的事件绑定
@@ -767,7 +781,11 @@ GooFlow.prototype = {
         }
         if (this.$textArea.css("display") == "none")    this.$textArea.removeData("id").val("").hide();
     },
-    //增加一个流程结点,传参为一个JSON,有id,name,top,left,width,height,type(结点类型)等属性
+    /**
+     * 增加一个流程结点,传参为一个JSON,有id,name,top,left,width,height,type(结点类型)等属性
+     * @param {String} id
+     * @param {JSON} json
+     */
     addNode: function (id, json) {
         if (this.onItemAdd != null && !this.onItemAdd(id, "node", json))return;
         if (this.$undoStack && this.$editable) {
@@ -809,7 +827,7 @@ GooFlow.prototype = {
         //绑定用鼠标移动事件
         this.$workArea.delegate(".ico", "mousedown", {inthis: this}, function (e) {
             if (!e)e = window.event;
-            if (e.button == 2)return false;
+            if (e.button == 2) return false;
             var This = e.data.inthis;
             if (This.$nowType == "direct")    return;
             var Dom = $(this).parents(".GooFlow_item");
@@ -891,7 +909,13 @@ GooFlow.prototype = {
             var lineStart = This.$workArea.data("lineStart");
             var lineEnd = This.$workArea.data("lineEnd");
             if (lineStart && !This.$mpTo.data("p")) {
-                This.addLine(This.$id + "_line_" + This.$max, {from: lineStart.id, to: this.id, name: ""});
+                This.addLine(This.$id + "_line_" + This.$max, {
+                    from: lineStart.id,
+                    to: this.id,
+                    name: "",
+                    type: "tb",
+                    M: (lineStart.y + This.$nodeData[lineStart.id].height / 2 + e.pageY) / 2
+                });
                 This.$max++;
             }
             else {
@@ -1399,7 +1423,7 @@ GooFlow.prototype = {
         this.$areaCount = 0;
         this.$deletedItem = {};
     },
-///////////以下为有关画线的方法
+    ///////////以下为有关画线的方法
     //绘制一条箭头线，并返回线的DOM
     drawLine: function (id, sp, ep, mark, dash) {
         var line;
@@ -1714,7 +1738,11 @@ GooFlow.prototype = {
         }
         else    this.$lineDom[id].childNodes[2].textContent = lineData.name;
     },
-    //增加一条线
+    /**
+     * 增加一条线
+     * @param {String} id
+     * @param {Object} json
+     */
     addLine: function (id, json) {
         if (this.onItemAdd != null && !this.onItemAdd(id, "line", json))return;
         if (this.$undoStack && this.$editable) {
@@ -2064,14 +2092,14 @@ GooFlow.prototype = {
         w -= 39;
         h = h - headHeight - (this.$head != null ? 5 : 8);
         this.$workArea.parent().css({height: h + "px", width: w + "px"});
-        this.$workArea.css({height: h * 3 + "px", width: w * 3 + "px"});
+        this.$workArea.css({height: h * 1 + "px", width: w * 1 + "px"});
         if (GooFlow.prototype.useSVG == "") {
-            this.$draw.coordsize = w * 3 + "," + h * 3;
+            this.$draw.coordsize = w * 1 + "," + h * 1;
         }
-        this.$draw.style.width = w * 3 + "px";
-        this.$draw.style.height = +h * 3 + "px";
+        this.$draw.style.width = w * 1 + "px";
+        this.$draw.style.height = +h * 1 + "px";
         if (this.$group == null) {
-            this.$group.css({height: h * 3 + "px", width: w * 3 + "px"});
+            this.$group.css({height: h * 1 + "px", width: w * 1 + "px"});
         }
     }
 }
