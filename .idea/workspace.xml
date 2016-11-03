@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6adb30b4-1e29-46d6-a8f8-8b79235d61b7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bubble.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/my.js" afterPath="$PROJECT_DIR$/js/my.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my.html" afterPath="$PROJECT_DIR$/my.html" />
-    </list>
+    <list default="true" id="6adb30b4-1e29-46d6-a8f8-8b79235d61b7" name="Default" comment="" />
     <ignored path="jsplumb.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -704,12 +695,12 @@
       <updated>1478049771281</updated>
       <workItem from="1478049774180" duration="20294000" />
       <workItem from="1478133315682" duration="14863000" />
-      <workItem from="1478157604372" duration="4185000" />
+      <workItem from="1478157604372" duration="4257000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39342000" />
+    <option name="totallyTimeSpent" value="39414000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1672" y="-8" width="1456" height="916" extended-state="6" />
