@@ -69,6 +69,23 @@ v\:group, v\:rect, v\:imagedata, v\:oval, v\:line, v\:polyline, v\:stroke, v\:te
     border: 0px;
 }
 
+.GooFlow_head_btn div {
+    display: block;
+    overflow: hidden;
+    width: 18px;
+    height: 18px;
+    border: 0px
+}
+
+.GooFlow_head_btn:hover div {
+    border: #F6A32D 1px solid;
+    border-top-color: #B1905D;
+    margin: 0px;
+    -moz-border-radius: 1px;
+    -webkit-border-radius: 1px;
+    border-radius: 1px;
+}
+
 .GooFlow_head_btn:hover {
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;

@@ -36,9 +36,10 @@ function GooFlow(bgDiv, property) {
     var tmp = "";
     if (property.haveHead) {
         tmp = "<div class='GooFlow_head'><label title='" + (property.initLabelText || "newFlow_1") + "'>" + (property.initLabelText || "newFlow_1") + "</label>";
-        for (var x = 0; x < property.headBtns.length; ++x) {
-            tmp += "<a href='javascript:void(0)' class='GooFlow_head_btn'><b class='ico_" + property.headBtns[x] + "'></b></a>"
-        }
+        // 将工具放在了侧面
+        // for (var x = 0; x < property.headBtns.length; ++x) {
+        //     tmp += "<a href='javascript:void(0)' class='GooFlow_head_btn'><b class='ico_" + property.headBtns[x] + "'></b></a>"
+        // }
         tmp += "</div>";
         this.$head = $(tmp);
         this.$bgDiv.append(this.$head);
@@ -96,6 +97,17 @@ function GooFlow(bgDiv, property) {
                     + property.toolBtns[i] + "'/></a>";//加入自定义按钮
             }
             this.$tool.append(tmp);
+        }
+
+        // 将保存按钮放在了这里
+        if(property.headBtns) {
+            this.$tool.append("<span/><div><a href='javascript:void(0)' class='GooFlow_head_btn' id='GooFlow_head_btn_save'><div class='ico_" + property.headBtns[0] + "'></div></a></div>");
+            $('.ico_' + property.headBtns[0]).on('click', {inthis:this}, function (e) {
+                e = e || window.event;
+                var This = e.data.inthis;
+                if(This.onBtnSaveClick)
+                    This.onBtnSaveClick();
+            });
         }
         //加入区域划分框工具开关按钮
         if (property.haveGroup)
@@ -449,6 +461,7 @@ function GooFlow(bgDiv, property) {
         });
     }
 }
+
 GooFlow.prototype = {
     useSVG: "",
     getSvgMarker: function (id, color) {
@@ -2103,9 +2116,12 @@ GooFlow.prototype = {
         }
     }
 }
-//将此类的构造函数加入至JQUERY对象中
+
+// 将此类的构造函数加入至JQUERY对象中
+// 扩展本函数，预定义几个触发
 jQuery.extend({
     createGooFlow: function (bgDiv, property) {
-        return new GooFlow(bgDiv, property);
+        var instance = new GooFlow(bgDiv, property);
+        return instance;
     }
 });
