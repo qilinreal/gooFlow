@@ -812,7 +812,20 @@ GooFlow.prototype = {
             if (!json.left || json.left < 0)json.left = 0;
             var hack = 0;
             if (navigator.userAgent.indexOf("8.0") != -1)    hack = 2;
-            this.$nodeDom[id] = $("<div class='GooFlow_item" + mark + "' id='" + id + "' style='top:" + json.top + "px;left:" + json.left + "px'><table cellspacing='1' style='width:" + (json.width - 2) + "px;height:" + (json.height - 2) + "px;'><tr><td class='ico'><b class='ico_" + json.type + "'></b></td><td>" + json.name + "</td></tr></table><div style='display:none'><div class='rs_bottom'></div><div class='rs_right'></div><div class='rs_rb'></div><div class='rs_close'></div></div></div>");
+            this.$nodeDom[id]
+                = $("<div class='GooFlow_item" + mark + "' id='" + id + "' style='top:" + json.top + "px;left:" + json.left + "px'>" +
+                "<table cellspacing='1' style='width:" + (json.width - 2) + "px;height:" + (json.height - 2) + "px;'>" +
+                "<tr>" +
+                "<td class='ico'>" +
+                "<b class='ico_" + json.type + "'>" +
+                "</b></td>" +
+                "<td>" + json.name + "</td></tr>" +
+                "</table>" +
+                "<div style='display:none'>" +
+                "<div class='rs_bottom'></div>" +
+                "<div class='rs_right'></div>" +
+                "<div class='rs_rb'></div>" +
+                "<div class='rs_close'></div></div></div>");
             if (json.type.indexOf(" mix") > -1)    this.$nodeDom[id].addClass("item_mix");
         }
         else {

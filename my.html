@@ -15,7 +15,8 @@
     <title>流程图DEMO</title>
 </head>
 <body>
-<div id="demo"></div>
+<div id="demo">
+</div>
 
 <script type="text/javascript">
     var property = {
@@ -63,6 +64,9 @@
 //            areas: {
 //                area_8: {name: "area_8", left: 35, top: 39, color: "red", width: 472, height: 114}
 //            }
+        };
+        instance.onItemResize = function () {
+            return false;
         };
         instance.$max = 9;
         instance.loadData(jsondata);
